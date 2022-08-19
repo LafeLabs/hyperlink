@@ -1,0 +1,28 @@
+{
+    "html": [
+        "README.md",
+        "fork.html",
+        "hyperlink.html",
+        "hyperlinkeditor.html",
+        "index.html"
+    ],
+    "data": [
+        "dna.txt"
+    ],
+    "php": [
+        "copy.txt",
+        "dir.txt",
+        "dnagenerator.txt",
+        "editor.txt",
+        "fileloader.txt",
+        "filesaver.txt",
+        "mkdir.txt",
+        "rdelete.txt",
+        "replicator.txt",
+        "scrollreplicator.txt",
+        "text2php.txt"
+    ],
+    "javascript": [
+        "hyperlink.js"
+    ]
+}

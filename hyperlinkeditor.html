@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+        <!--
+
+    HYPERLINK
+
+    Local Social Media
+    
+    github.com/lafelabs/crustweb
+    
+    All Code and ideas CC0 Public Domain
+
+
+    -->
+    
+<link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//wAA//8AAP//AAD+fwAA/n8AAOfnAADzzwAAuB0AAJ/5AADH4wAAcY4AADw8AACf+QAAz/MAAOPHAAD4HwAA" rel="icon" type="image/x-icon" />
+
+   <title>CRUST WEB</title>    
+       <!--Stop Google:-->
+    <META NAME="robots" CONTENT="noindex,nofollow">
+
+<script src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src = "jscode/hyperlink.js"></script>
+
+</head>
+<body>    
+
+<h1><a href = "https://www.github.com/lafelabs/crustweb">CRUST WEB</a></h1>
+
+<img id = "mainimage"/>
+
+<div id = "qrcode"></div>
+
+<h3><a id=  "serverlink"></a></h3>
+
+<h3><a href = "index.html">HOME</a></h3>
+
+
+<table>
+    <tr>
+        <td>Server URL(http://[your ip address]/):</td>
+        <td><input id = "serverurlinput"/></td>
+    </tr>
+    <tr>
+        <td>image URL:</td>
+        <td><input id = "imageurlinput"/></td>
+    </tr>    
+</table>
+
+<script>
+
+//serverurl = "http://10.0.0.7/";
+//imageurl = "https://raw.githubusercontent.com/LafeLabs/crustweb/main/images/replicator.jpg";
+
+//hyperlink = {};
+//hyperlink.serverurl = serverurl;
+//hyperlink.imageurl = imageurl;
+
+serverurl = hyperlink.serverurl;
+imageurl = hyperlink.imageurl;
+
+codesquaresize = 200;
+document.getElementById("qrcode").style.width = codesquaresize.toString()  + "px";
+
+qrcode = new QRCode(document.getElementById("qrcode"), {
+	text: serverurl,
+	width: codesquaresize,
+	height: codesquaresize,
+	colorDark : "#000000",
+	colorLight : "#ffffff",
+	correctLevel : QRCode.CorrectLevel.H
+});
+
+
+loadserver();
+loadimage();
+
+
+document.getElementById("serverurlinput").onchange = function(){
+    serverurl = this.value;
+    hyperlink.serverurl = serverurl;
+    loadserver();
+    savejson();
+    
+}
+
+document.getElementById("imageurlinput").onchange = function(){
+    imageurl = this.value;
+    hyperlink.imageurl = imageurl;
+    loadimage();
+    savejson()
+
+}
+
+
+function loadserver(){
+    document.getElementById("serverlink").href = serverurl;
+    document.getElementById("serverlink").innerHTML = serverurl;
+    document.getElementById("serverurlinput").value = serverurl;
+    qrcode.makeCode(serverurl);
+}
+
+function loadimage(){
+    document.getElementById("mainimage").src = imageurl;
+    document.getElementById("imageurlinput").value = imageurl;
+
+}
+
+function savejson(){
+
+    var httpc = new XMLHttpRequest();
+    var url = "filesaver.php";        
+    httpc.open("POST", url, true);
+    httpc.setRequestHeader("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
+
+    httpc.send("data="+encodeURIComponent("hyperlink = " + JSON.stringify(hyperlink,null,"    ") + ";")+"&filename=jscode/hyperlink.js");//send text to filesaver.ph
+    
+}
+
+
+
+
+</script>
+<style>
+input{
+    background-color:black;
+    color:#00ff00;
+    font-family:courier;
+    border-color:#00ff00;
+    width:40em;
+}
+table{
+    font-family:courier;
+    font-size:14px;
+    display:block;
+    margin:auto;
+    border:solid;
+    border-color:#00ff00;
+}
+td{
+    text-align:right;
+}
+body{
+    font-size:2em;
+    padding:0em 4em 4em 4em;
+    overflow:scroll;
+    background-color:black;
+    color:#00ff00;
+}
+#mainimage{
+    max-width:40%;
+    display:block;
+    margin:auto
+}
+#qrcode{
+    border:solid;
+    border-width:10px;
+    border-color:#808080;
+    margin:auto;
+    margin-top:1em;
+    margin-bottom:1em;
+}
+h1,h2,h3{
+    text-align:center;
+}
+a{
+    color:#ff2cb4;
+}
+</style>
+</body>
+</html>

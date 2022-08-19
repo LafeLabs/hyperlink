@@ -2,7 +2,6 @@
     "html": [
         "README.md",
         "fork.html",
-        "hyperlink.html",
         "hyperlinkeditor.html",
         "index.html"
     ],
